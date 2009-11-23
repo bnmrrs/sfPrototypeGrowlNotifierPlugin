@@ -1,0 +1,49 @@
+sfPrototypeGrowlNotification:
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    message:
+      type: clob
+      notnull: true
+    header:
+      type: string(50)
+    speed_in:
+      type: float
+      default: 0.3
+    speed_out:
+      type: float
+      default: 0.5
+    out_direction:
+      type: string(50)
+      default: '{ y: -20 }'
+    life:
+      type: integer(4)
+      default: 5
+    sticky:
+      type: boolean
+      default: true
+    class_name:
+      type: string(50)
+      default: ""
+    received:
+      type: boolean
+      default: false
+    type:
+      type: enum
+      values: [ growl, warn, info, error ]
+      default: growl
+    user_id:
+      type: integer(4)
+    expiry:
+      type: timestamp
+    acknowledge_receipt:
+      type: boolean
+      default: false
+  relations:
+    User:
+      class: sfGuardUser
+      local: user_id
+      foreign: id
+      foreignAlias: Notifications
