@@ -13,10 +13,10 @@ class PluginsfPrototypeGrowlNotificationTable extends Doctrine_Table
   {
     $q = $this->createQuery('n')
       ->addWhere('n.user_id = ?', $userId)
-      ->addWhere('n.received = ?', false);
+      ->addWhere('n.received = ? OR n.received IS NULL', false);
 
     if ($active) {
-      $q->addWhere('n.expiry > ? OR n.expiry is null', date('Y-m-d H:i:s'));
+      $q->addWhere('n.expiry > ? OR n.expiry IS NULL', date('Y-m-d H:i:s'));
     }
 
     return $q->execute();
