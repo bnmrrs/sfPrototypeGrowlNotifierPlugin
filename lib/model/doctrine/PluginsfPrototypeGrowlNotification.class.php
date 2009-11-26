@@ -12,7 +12,7 @@ abstract class PluginsfPrototypeGrowlNotification extends BasesfPrototypeGrowlNo
 {
   public function asArray()
   {
-    return array(
+    $ret = array(
       'id' => $this->id,
       'type' => $this->type,
       'message' => $this->message,
@@ -26,6 +26,12 @@ abstract class PluginsfPrototypeGrowlNotification extends BasesfPrototypeGrowlNo
         'acknowledgeReceipt' => $this->acknowledge_receipt,
       )
     );
+
+    if (strlen($this->class_name)) {
+      $ret['options']['className'] = $this->class_name;
+    }
+
+    return $ret;
   }
 
   public function markAsDisplayed()
